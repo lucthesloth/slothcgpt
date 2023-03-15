@@ -63,7 +63,7 @@ public class HTTPRequest {
             return response.toString();
         } else {
             System.out.println("POST request failed: " + responseCode);
-            return null;
+            return "POST request failed: " + responseCode;
         }
     }
 }

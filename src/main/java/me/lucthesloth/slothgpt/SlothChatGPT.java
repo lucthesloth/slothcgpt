@@ -13,8 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
 import me.shedaniel.autoconfig.AutoConfig;
@@ -96,7 +94,12 @@ public class SlothChatGPT implements ModInitializer {
         try {
             String response = HTTPRequest.sendPostRequest("https://api.openai.com/v1/chat/completions", headers,
                     SlothChatGPT.gson.toJson(data));
-            LOGGER.info(response);
+            if (response.contains("POST request failed")) {
+                requester.sendMessage(((MutableText) Text.of(
+                response))
+                .setStyle(Style.EMPTY.withColor(Formatting.RED).withItalic(true)));
+                return null;
+            }
             ChatRequestData.Response responseData = SlothChatGPT.gson.fromJson(response,
                     ChatRequestData.Response.class);
             return responseData.getChoices().stream()
@@ -127,7 +130,8 @@ public class SlothChatGPT implements ModInitializer {
 
                 if (lastPlayer != "" && ready) {
                     List<String> responses = responses(null, lastPlayer, client.player, null);
-                    sendResponseList(responses);
+                    if (responses != null)
+                        sendResponseList(responses);
                 }
 
             }
@@ -142,6 +146,7 @@ public class SlothChatGPT implements ModInitializer {
                         if (target != null) {
                             asyncExecute.execute(() -> {
                                 List<String> responses = responses(null, target.getName().getString(), ctx.getSource().getPlayer(), null);
+                                if (responses != null)
                                 sendResponseList(responses);
                             });
                         } else {
@@ -152,6 +157,7 @@ public class SlothChatGPT implements ModInitializer {
             dispatcher.register(ClientCommandManager.literal("cgpt").then(ClientCommandManager.argument("prompt", StringArgumentType.greedyString()).executes(ctx -> {
                 asyncExecute.execute(() -> {
                     List<String> responses = responses(StringArgumentType.getString(ctx, "prompt"), null, ctx.getSource().getPlayer(), null);
+                    if (responses != null)
                     sendResponseList(responses);
                 });
                 return 1;
