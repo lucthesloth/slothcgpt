@@ -37,7 +37,7 @@ dependencies {
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 	// https://mvnrepository.com/artifact/com.google.code.gson/gson
 	implementation 'com.google.code.gson:gson:2.10.1'
-	modImplementation 'dev.xpple:clientarguments:1.4.2'
+	include modImplementation('dev.xpple:clientarguments:1.4.2')
 	modApi "me.shedaniel.cloth:cloth-config-fabric:9.0.94"
 	modApi "com.terraformersmc:modmenu:5.0.2"
 }

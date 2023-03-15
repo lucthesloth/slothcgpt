@@ -37,7 +37,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import dev.xpple.clientarguments.arguments.*;
+import dev.xpple.clientarguments.arguments.CEntityArgumentType;
 
 public class SlothChatGPT implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("sloth-chatgpt");
