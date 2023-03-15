@@ -1,0 +1,14 @@
+{
+    "category.scgpt.binds": "SlothCGPT",
+    "me.lucthesloth.scgpt.requestLastPlayer": "Request Last Player's message",
+    "text.autoconfig.slothgptconf.option.prompt": "Text Prompt",
+    "text.autoconfig.slothgptconf.option.prompt.@tooltip": "Use %player% to insert the player's name",
+    "text.autoconfig.slothgptconf.option.generateOnJoin": "Request WB Message on player join",
+    "text.autoconfig.slothgptconf.option.generateOnJoin.@tooltip": "Request the player's message when they join the server",
+    "text.autoconfig.slothgptconf.option.api": "API Data",
+    "text.autoconfig.slothgptconf.option.api.token": "OpenAI TOKEN",
+    "text.autoconfig.slothgptconf.option.request": "Request Parameters",
+    "text.autoconfig.slothgptconf.option.request.model": "OpenAI Text Model",
+    "text.autoconfig.slothgptconf.option.request.max_tokens": "Max Tokens",
+    "text.autoconfig.slothgptconf.option.request.n": "Choice Count"
+}
