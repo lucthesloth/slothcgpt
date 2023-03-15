@@ -8,9 +8,9 @@ gradle/
 remmapedSrc/
 gradlew
 gradlew.bat
-
+remappedSrc/
 # eclipse
-
+.github/
 *.launch
 
 # idea
