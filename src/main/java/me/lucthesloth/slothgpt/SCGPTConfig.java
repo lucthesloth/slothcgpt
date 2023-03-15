@@ -5,7 +5,7 @@ import me.shedaniel.autoconfig.annotation.*;
 @Config.Gui.Background(value = Config.Gui.Background.TRANSPARENT)
 @Config(name = "slothgptconf")
 public class SCGPTConfig implements ConfigData{
-    
+    @ConfigEntry.Gui.Tooltip
     public String prompt = "Write a short welcome back for %player%";
     public boolean generateOnJoin = true;
     @ConfigEntry.Gui.CollapsibleObject
