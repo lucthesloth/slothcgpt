@@ -20,14 +20,19 @@ public class ClientPlayNetworkHandlerMixin {
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
 		if (player != null && !packet.getEntries().isEmpty()) {
 			if (packet.getActions().contains(PlayerListS2CPacket.Action.ADD_PLAYER)) {
-				if (!packet.getEntries().get(0).profile().getId().equals(player
-						.getGameProfile()
-						.getId()) && !SlothChatGPT.lastPlayer.equals(packet.getEntries().get(0).profile().getName())) {					
-					if (SlothChatGPT._Config.generateOnJoin && SlothChatGPT.ready) {
-						List<String> responses = SlothChatGPT.responses(null,packet.getEntries().get(0).profile().getName(), player, null);
-						SlothChatGPT.sendResponseList(responses);
+				//Slight workaround bungee/waterfall
+				if (!packet.getEntries().get(0).profile().getName().startsWith("~")) {
+					if (!packet.getEntries().get(0).profile().getId().equals(player
+							.getGameProfile()
+							.getId())
+							&& !SlothChatGPT.lastPlayer.equals(packet.getEntries().get(0).profile().getName())) {
+						if (SlothChatGPT._Config.generateOnJoin && SlothChatGPT.ready) {
+							List<String> responses = SlothChatGPT.responses(null,
+									packet.getEntries().get(0).profile().getName(), player, null);
+							SlothChatGPT.sendResponseList(responses);
+						}
+						SlothChatGPT.lastPlayer = packet.getEntries().get(0).profile().getName();
 					}
-					SlothChatGPT.lastPlayer = packet.getEntries().get(0).profile().getName();
 				}
 			}
 		}

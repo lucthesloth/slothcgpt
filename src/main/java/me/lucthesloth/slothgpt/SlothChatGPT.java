@@ -141,11 +141,11 @@ public class SlothChatGPT implements ModInitializer {
     private void registerCommands() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(
-                    ClientCommandManager.literal("scgpt").then(ClientCommandManager.argument("player", CEntityArgumentType.player()).executes(ctx -> {
-                        AbstractClientPlayerEntity target = CEntityArgumentType.getCPlayer(ctx, "player");
+                    ClientCommandManager.literal("scgpt").then(ClientCommandManager.argument("player", StringArgumentType.word()).suggests(new PlayersSuggestionProvider()).executes(ctx -> {
+                        String target = StringArgumentType.getString(ctx, "player");
                         if (target != null) {
                             asyncExecute.execute(() -> {
-                                List<String> responses = responses(null, target.getName().getString(), ctx.getSource().getPlayer(), null);
+                                List<String> responses = responses(null, StringArgumentType.getString(ctx, "player"), ctx.getSource().getPlayer(), null);
                                 if (responses != null)
                                 sendResponseList(responses);
                             });
