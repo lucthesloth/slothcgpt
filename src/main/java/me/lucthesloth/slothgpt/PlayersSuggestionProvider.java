@@ -16,8 +16,10 @@ public class PlayersSuggestionProvider implements SuggestionProvider<FabricClien
     @Override
     public CompletableFuture<Suggestions> getSuggestions(CommandContext<FabricClientCommandSource> context,
             SuggestionsBuilder builder) throws CommandSyntaxException {
+                String cur = context.getInput().substring(7).toLowerCase();
+                SlothChatGPT.LOGGER.info(cur);
                 MinecraftClient.getInstance().getNetworkHandler().getPlayerList().stream().forEach(player -> {
-                    builder.suggest(player.getProfile().getName());
+                    if (cur.trim().isEmpty() || player.getProfile().getName().toLowerCase().contains(cur)) builder.suggest(player.getProfile().getName());
                 });
 
         return builder.buildFuture();
