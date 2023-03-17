@@ -145,7 +145,7 @@ public class SlothChatGPT implements ModInitializer {
         if (lastPlayers.contains(player))
             return false;
         lastPlayers.add(player);
-        if (lastPlayers.size() > 10){
+        if (lastPlayers.size() >= _Config.autoWelcome.lookBehind){
             lastPlayers.remove(0);
         }
         return true;

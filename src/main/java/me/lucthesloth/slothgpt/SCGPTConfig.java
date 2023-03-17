@@ -28,5 +28,7 @@ public class SCGPTConfig implements ConfigData{
         public boolean enabled = false;
         @ConfigEntry.Gui.Tooltip
         String message = "Welcome back %player%";
+        @ConfigEntry.Gui.Excluded
+        int lookBehind = 10;
     }
 }
