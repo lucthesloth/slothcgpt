@@ -21,17 +21,21 @@ public class ClientPlayNetworkHandlerMixin {
 		if (player != null && !packet.getEntries().isEmpty()) {
 			if (packet.getActions().contains(PlayerListS2CPacket.Action.ADD_PLAYER)) {
 				//Slight workaround bungee/waterfall
-				if (!packet.getEntries().get(0).profile().getName().startsWith("~")) {
+				String playerName = packet.getEntries().get(0).profile().getName();
+				if (!playerName.startsWith("~")) {
 					if (!packet.getEntries().get(0).profile().getId().equals(player
 							.getGameProfile()
 							.getId())
-							&& !SlothChatGPT.lastPlayer.equals(packet.getEntries().get(0).profile().getName())) {
+							&& !SlothChatGPT.lastPlayer.equals(playerName)) {
 						if (SlothChatGPT._Config.generateOnJoin && SlothChatGPT.ready) {
 							List<String> responses = SlothChatGPT.responses(null,
-									packet.getEntries().get(0).profile().getName(), player, null);
+									playerName, player, null);
 							SlothChatGPT.sendResponseList(responses);
 						}
-						SlothChatGPT.lastPlayer = packet.getEntries().get(0).profile().getName();
+						SlothChatGPT.lastPlayer = playerName;
+						if (!SlothChatGPT.registerPlayerJoin(playerName) && SlothChatGPT._Config.autoWelcome.enabled){
+
+						}
 					}
 				}
 			}

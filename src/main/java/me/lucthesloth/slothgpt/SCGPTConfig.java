@@ -14,6 +14,8 @@ public class SCGPTConfig implements ConfigData{
     @ConfigEntry.Gui.CollapsibleObject
     public RequestConfig request = new RequestConfig();
 
+    @ConfigEntry.Gui.CollapsibleObject
+    public AutoWelcome autoWelcome = new AutoWelcome();
     static class APIConfig {
         String token = "";        
     }
@@ -21,5 +23,10 @@ public class SCGPTConfig implements ConfigData{
         String model = "gpt-3.5-turbo";
         int max_tokens = 100;
         int n = 1;
+    }
+    public static class AutoWelcome {
+        public boolean enabled = false;
+        @ConfigEntry.Gui.Tooltip
+        String message = "Welcome back %player%";
     }
 }

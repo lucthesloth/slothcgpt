@@ -1,6 +1,8 @@
 package me.lucthesloth.slothgpt;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -38,6 +40,7 @@ public class SlothChatGPT implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("sloth-chatgpt");
     public static SlothChatGPT instance;
     public static String lastPlayer = "";
+    public static List<String> lastPlayers;
     public static boolean ready = false;
     public static Gson gson = new GsonBuilder().create();
 
@@ -73,6 +76,8 @@ public class SlothChatGPT implements ModInitializer {
         });
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
             ready = false;
+            lastPlayers = null;
+            lastPlayer = "";
         });
     }
 
@@ -134,6 +139,17 @@ public class SlothChatGPT implements ModInitializer {
             }
         });
     }
+    public static boolean registerPlayerJoin(String player) {
+        if (lastPlayers == null)
+            lastPlayers = new LinkedList<>();
+        if (lastPlayers.contains(player))
+            return false;
+        lastPlayers.add(player);
+        if (lastPlayers.size() > 10){
+            lastPlayers.remove(0);
+        }
+        return true;
+    }
 
     private void registerCommands() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
@@ -158,8 +174,7 @@ public class SlothChatGPT implements ModInitializer {
                     sendResponseList(responses);
                 });
                 return 1;
-            })));
-                            
+            })));                            
         });
     }
 }

@@ -10,5 +10,9 @@
     "text.autoconfig.slothgptconf.option.request": "Request Parameters",
     "text.autoconfig.slothgptconf.option.request.model": "OpenAI Text Model",
     "text.autoconfig.slothgptconf.option.request.max_tokens": "Max Tokens",
-    "text.autoconfig.slothgptconf.option.request.n": "Choice Count"
+    "text.autoconfig.slothgptconf.option.request.n": "Choice Count",
+    "text.autoconfig.slothgptconf.option.autoWelcome": "Simple Auto Welcome",
+    "text.autoconfig.slothgptconf.option.autoWelcome.enabled": "Enabled",
+    "text.autoconfig.slothgptconf.option.autoWelcome.message": "Message",
+    "text.autoconfig.slothgptconf.option.autoWelcome.message.@Tooltip": "Use %player% to insert the player's name"
 }
