@@ -34,7 +34,7 @@ public class ClientPlayNetworkHandlerMixin {
 						}
 						SlothChatGPT.lastPlayer = playerName;
 						if (!SlothChatGPT.registerPlayerJoin(playerName) && SlothChatGPT._Config.autoWelcome.enabled){
-
+							MinecraftClient.getInstance().getNetworkHandler().sendChatMessage(SlothChatGPT._Config.autoWelcome.message.replace("%player%", playerName));
 						}
 					}
 				}

@@ -1,5 +1,6 @@
 {
     "category.scgpt.binds": "SlothCGPT",
+    "text.autoconfig.slothgptconf.title": "Sloth's Chat-GPT Integration",
     "me.lucthesloth.scgpt.requestLastPlayer": "Request Last Player's message",
     "text.autoconfig.slothgptconf.option.prompt": "Text Prompt",
     "text.autoconfig.slothgptconf.option.prompt.@Tooltip": "Use %player% to insert the player's name",
