@@ -33,7 +33,7 @@ public class ClientPlayNetworkHandlerMixin {
 							SlothChatGPT.sendResponseList(responses);
 						}
 						SlothChatGPT.lastPlayer = playerName;
-						if (!SlothChatGPT.registerPlayerJoin(playerName) && SlothChatGPT._Config.autoWelcome.enabled){
+						if (SlothChatGPT.registerPlayerJoin(playerName) && SlothChatGPT._Config.autoWelcome.enabled){
 							MinecraftClient.getInstance().getNetworkHandler().sendChatMessage(SlothChatGPT._Config.autoWelcome.message.replace("%player%", playerName));
 						}
 					}
