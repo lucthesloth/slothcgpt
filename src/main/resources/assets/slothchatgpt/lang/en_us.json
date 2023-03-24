@@ -14,6 +14,9 @@
     "text.autoconfig.slothgptconf.option.request.n": "Choice Count",
     "text.autoconfig.slothgptconf.option.autoWelcome": "Simple Auto Welcome",
     "text.autoconfig.slothgptconf.option.autoWelcome.enabled": "Enabled",
+    "text.autoconfig.slothgptconf.option.autoWelcome.useChatCapture": "Use chat for player join instead of player list",
+    "text.autoconfig.slothgptconf.option.autoWelcome.chatCaptureRegex": "Chat Capture (Regex)",
+    "text.autoconfig.slothgptconf.option.autoWelcome.chatCaptureRegex.@Tooltip": "Regex to capture the player's name from the chat message, use one capture group alongside the join message match",
     "text.autoconfig.slothgptconf.option.autoWelcome.message": "Message",
     "text.autoconfig.slothgptconf.option.autoWelcome.message.@Tooltip": "Use %player% to insert the player's name"
 }

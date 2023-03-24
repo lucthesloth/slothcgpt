@@ -25,6 +25,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
@@ -78,6 +79,9 @@ public class SlothChatGPT implements ModInitializer {
             ready = false;
             lastPlayers = null;
             lastPlayer = "";
+        });
+        ServerMessageEvents.CHAT_MESSAGE.register((message, sender, params) -> {
+            LOGGER.info(String.format("%s - %s", sender.getName().getString(), message.getContent().getString()));
         });
     }
 

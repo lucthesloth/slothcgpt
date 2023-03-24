@@ -26,6 +26,9 @@ public class SCGPTConfig implements ConfigData{
     }
     public static class AutoWelcome {
         public boolean enabled = false;
+        public boolean useChatCapture = false;
+        @ConfigEntry.Gui.Tooltip
+        public String chatCaptureRegex = "(.*) joined!$";
         @ConfigEntry.Gui.Tooltip
         public
         String message = "Welcome back %player%";
